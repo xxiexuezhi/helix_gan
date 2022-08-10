@@ -29,7 +29,6 @@ import pickle
 
 #inmporting the first three atoms coordinators from original pdb files.
 
-using_opt = False
 
 
 #with open('../Encoding/toy_data_10_20.pickle', 'rb') as f:
@@ -50,29 +49,6 @@ lst_first_3_atoms = [np.array([-0.52274139,  1.36320998,  0.        ]),np.array(
 
 # In[8]:
 
-def optimizer(angle,angle_type):
-    ref_phi = -1.117
-    ref_psi = -0.715
-    ref_omega = 3.141 if (angle>0) else -3.141
-    ref_angle = angle
-    ref_na = math.radians(121)
-    ref_ac = math.radians(109)
-    ref_cn = math.radians(115)
-    if angle_type=="phi":
-        ref_angle=ref_phi
-    if angle_type=="psi":
-        ref_angle=ref_psi
-    if angle_type=="omega":
-        ref_angle=ref_omega
-    if angle_type=="na":
-        ref_angle=ref_na
-    if angle_type=="ac":
-        ref_angle=ref_ac
-    if angle_type=="cn":
-        ref_angle=ref_cn    
-    if abs(angle-ref_angle)>0.2 *abs(ref_angle):
-        return angle + 0.2 *(ref_angle - angle)
-    return angle
     
         
         
@@ -202,13 +178,6 @@ def get_mainchain_angles(mc_np):
             angle_cn = np.arctan2(mc_np[i][8],mc_np[i][9])
             angle_na = np.arctan2(mc_np[i][10],mc_np[i][11])
             
-            if using_opt:
-                angle1 = optimizer(angle1,"psi")
-                angle2 = optimizer(angle2,"omega")
-                angle3 = optimizer(angle3,"phi")
-                angle_ac = optimizer(angle_ac,"ac")
-                angle_cn = optimizer(angle_cn,"cn")
-                angle_na = optimizer(angle_na,"na")
                 
             mc_angle_lst.append(angle1)
             mc_angle_lst.append(angle2)
