@@ -4,6 +4,6 @@ The source code is currently password protected now. It will be public soon
 
 
 # Instruction
-The code is tested using python 3.7. All needed package is listed in the requirement.txt
+The code is tested using python 3.7. PLease install all needed package, which are listed in the requirement.txt
 
 
